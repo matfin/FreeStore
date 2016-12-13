@@ -13,25 +13,22 @@ private:
 	string firstname;
 	string lastname;
 	int age;
-	Resource* resource;
+	std::shared_ptr<Resource> resource;
 
 public:
 	Person(string first, string last, int a);
-	Person(const Person &p);
-	~Person(void);
 
 	int getAge() const { return age; };
 	string getFirstName() const;
 	string getLastName() const;
 	string getFullName() const;
-	Resource* getResource() const;
+	//Resource* getResource() const;
 
 	void setAge(int a) { age = a; };
 	void setFirstName(string first);
 	void setLastName(string last);
 	void addResource();
 
-	Person& operator=(const Person &p);
 	bool operator==(Person &p) const;
 	bool operator>(Person &p) const;
 	bool operator<(Person &p) const;

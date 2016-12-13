@@ -7,25 +7,9 @@ using namespace std;
 Person::Person(string first, string last, int a)
 	: firstname(first), 
 	lastname(last), 
-	age(a), 
-	resource(nullptr)
+	age(a)
 {
 	cout << "construct Person: " << firstname << " " << lastname << " " << age << endl;
-}
-
-Person::Person(const Person &p)
-	: firstname(p.firstname),
-	lastname(p.lastname), 
-	age(p.age), 
-	resource(new Resource(p.resource->getName()))
-{
-	cout << "construct (copy) Person: " << firstname << " " << lastname << " " << age << endl;
-}
-
-Person::~Person(void)
-{
-	cout << "destruct Person: " << firstname << " " << lastname << " " << age << endl;
-	delete resource;
 }
 
 string Person::getFirstName() const 
@@ -43,10 +27,10 @@ string Person::getFullName() const
 	return firstname + " " + lastname;
 }
 
-Resource* Person::getResource() const
-{
-	return resource;
-}
+//Resource* Person::getResource() const
+//{
+//	return resource;
+//}
 
 void Person::setFirstName(string first) 
 {
@@ -60,19 +44,8 @@ void Person::setLastName(string last)
 
 void Person::addResource()
 {
-	delete resource;
-	resource = new Resource("This is a new resource for: " + getFullName());
-}
-
-Person &Person::operator=(const Person &p)
-{
-	firstname = p.firstname;
-	lastname = p.lastname;
-	age = p.age;
-	delete resource;
-	resource = new Resource(p.resource->getName());
-
-	return *this;
+	resource.reset();
+	resource = std::make_shared<Resource>("This is a new resource for: " + getFullName());
 }
 
 bool Person::operator==(Person &p) const
