@@ -27,10 +27,15 @@ string Person::getFullName() const
 	return firstname + " " + lastname;
 }
 
-//Resource* Person::getResource() const
-//{
-//	return resource;
-//}
+std::shared_ptr<Resource> Person::getResource() const
+{
+	return resource;
+}
+
+string Person::getResourceName() const
+{
+	return resource->getName();
+}
 
 void Person::setFirstName(string first) 
 {

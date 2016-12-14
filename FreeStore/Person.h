@@ -22,7 +22,8 @@ public:
 	string getFirstName() const;
 	string getLastName() const;
 	string getFullName() const;
-	//Resource* getResource() const;
+	std::shared_ptr<Resource> getResource() const;
+	string getResourceName() const;
 
 	void setAge(int a) { age = a; };
 	void setFirstName(string first);
